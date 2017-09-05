@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.http.core.logger;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package io.gravitee.gateway.handlers.api;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpDump {
+public interface InvokerConnection {
 
-    Logger logger = LoggerFactory.getLogger("io.gravitee.gateway.http.client");
+
+
 }

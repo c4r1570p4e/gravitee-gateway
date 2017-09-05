@@ -30,6 +30,7 @@ class VertxProxyConnection implements ProxyConnection {
     private final HttpClientRequest httpClientRequest;
     private ProxyResponse proxyResponse;
     private Handler<Throwable> timeoutHandler;
+    private Handler<ProxyResponse> responseHandler;
     private boolean canceled = false;
 
     VertxProxyConnection(final HttpClientRequest httpClientRequest) {
@@ -55,12 +56,26 @@ class VertxProxyConnection implements ProxyConnection {
     }
 
     @Override
-    public VertxProxyConnection connectTimeoutHandler(Handler<Throwable> timeoutHandler) {
+    public VertxProxyConnection exceptionHandler(Handler<Throwable> timeoutHandler) {
         this.timeoutHandler = timeoutHandler;
         return this;
     }
 
-    public Handler<Throwable> connectTimeoutHandler() {
+    @Override
+    public VertxProxyConnection responseHandler(Handler<ProxyResponse> responseHandler) {
+        this.responseHandler = responseHandler;
+        return this;
+    }
+
+    public void handleResponse(ProxyResponse proxyResponse) {
+        this.responseHandler.handle(proxyResponse);
+    }
+
+    public void handleConnectTimeout(Throwable throwable) {
+        this.timeoutHandler.handle(throwable);
+    }
+
+    public Handler<Throwable> timeoutHandler() {
         return this.timeoutHandler;
     }
 
