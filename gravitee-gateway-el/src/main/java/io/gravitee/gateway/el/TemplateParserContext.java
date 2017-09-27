@@ -18,23 +18,28 @@ package io.gravitee.gateway.el;
 import org.springframework.expression.ParserContext;
 
 /**
+ * @deprecated replaced by io.gravitee.el.TemplateParserContext
+ *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
+@Deprecated
 public class TemplateParserContext implements ParserContext {
+
+    private io.gravitee.el.TemplateParserContext delegate = new io.gravitee.el.TemplateParserContext();
 
     @Override
     public String getExpressionPrefix() {
-        return "{";
+        return delegate.getExpressionPrefix();
     }
 
     @Override
     public String getExpressionSuffix() {
-        return "}";
+        return delegate.getExpressionSuffix();
     }
 
     @Override
     public boolean isTemplate() {
-        return true;
+        return delegate.isTemplate();
     }
 }

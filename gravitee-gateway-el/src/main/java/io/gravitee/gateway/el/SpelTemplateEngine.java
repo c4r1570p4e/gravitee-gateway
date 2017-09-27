@@ -16,31 +16,25 @@
 package io.gravitee.gateway.el;
 
 import io.gravitee.gateway.api.expression.TemplateEngine;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 /**
+ * @deprecated replaced by io.gravitee.el.SpelTemplateEngine
+ *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
+@Deprecated
 public class SpelTemplateEngine implements TemplateEngine {
 
-    private static final String EXPRESSION_REGEX = "\\{([^#|T|(])";
-    private static final String EXPRESSION_REGEX_SUBSTITUTE = "{'{'}$1";
-
-    private final SpelTemplateContext templateContext = new SpelTemplateContext();
+    private io.gravitee.el.SpelTemplateEngine delegate = new io.gravitee.el.SpelTemplateEngine();
 
     @Override
     public String convert(String expression) {
-        // Escape sequence
-        final String replaced = expression.replaceAll(EXPRESSION_REGEX, EXPRESSION_REGEX_SUBSTITUTE);
-
-        return new SpelExpressionParser()
-                .parseExpression(replaced, new TemplateParserContext())
-                .getValue(getTemplateContext().getContext(), String.class);
+        return delegate.convert(expression);
     }
 
     @Override
     public SpelTemplateContext getTemplateContext() {
-        return templateContext;
+        return new SpelTemplateContext(delegate.getTemplateContext());
     }
 }
