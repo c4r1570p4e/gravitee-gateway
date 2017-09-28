@@ -18,7 +18,7 @@ package io.gravitee.gateway.el;
 import io.gravitee.gateway.api.expression.TemplateEngine;
 
 /**
- * @deprecated replaced by io.gravitee.el.SpelTemplateEngine
+ * @deprecated replaced by io.gravitee.el.spel.SpelTemplateEngine
  *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
@@ -26,7 +26,7 @@ import io.gravitee.gateway.api.expression.TemplateEngine;
 @Deprecated
 public class SpelTemplateEngine implements TemplateEngine {
 
-    private io.gravitee.el.SpelTemplateEngine delegate = new io.gravitee.el.SpelTemplateEngine();
+    private final io.gravitee.el.spel.SpelTemplateEngine delegate = new io.gravitee.el.spel.SpelTemplateEngine();
 
     @Override
     public String convert(String expression) {
@@ -35,6 +35,6 @@ public class SpelTemplateEngine implements TemplateEngine {
 
     @Override
     public SpelTemplateContext getTemplateContext() {
-        return new SpelTemplateContext(delegate.getTemplateContext());
+        return new SpelTemplateContext((io.gravitee.el.spel.SpelTemplateContext) delegate.getTemplateContext());
     }
 }

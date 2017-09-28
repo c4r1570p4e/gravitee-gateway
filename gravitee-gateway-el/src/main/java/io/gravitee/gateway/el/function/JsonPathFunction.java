@@ -36,6 +36,6 @@ public final class JsonPathFunction {
     }
 
     public static <T> T evaluate(Object json, String jsonPath, Predicate... predicates) throws IOException {
-        return io.gravitee.el.function.JsonPathFunction.evaluate(json,jsonPath,predicates);
+        return io.gravitee.el.spel.function.JsonPathFunction.evaluate(json,jsonPath,predicates);
     }
 }

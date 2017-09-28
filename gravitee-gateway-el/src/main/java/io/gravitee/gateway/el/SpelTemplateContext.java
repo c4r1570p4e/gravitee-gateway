@@ -19,7 +19,7 @@ import io.gravitee.gateway.api.expression.TemplateContext;
 import org.springframework.expression.EvaluationContext;
 
 /**
- * @deprecated replaced by io.gravitee.el.SpelTemplateContext
+ * @deprecated replaced by io.gravitee.el.spel.SpelTemplateContext
  *
  * @author David BRASSELY (david at gravitee.io)
  * @author GraviteeSource Team
@@ -27,13 +27,13 @@ import org.springframework.expression.EvaluationContext;
 @Deprecated
 public class SpelTemplateContext implements TemplateContext {
 
-    private final io.gravitee.el.SpelTemplateContext delegate;
+    private final io.gravitee.el.spel.SpelTemplateContext delegate;
 
     public SpelTemplateContext() {
-        this.delegate = new io.gravitee.el.SpelTemplateContext();
+        this.delegate = new io.gravitee.el.spel.SpelTemplateContext();
     }
 
-    SpelTemplateContext(io.gravitee.el.SpelTemplateContext delegate) {
+    SpelTemplateContext(io.gravitee.el.spel.SpelTemplateContext delegate) {
         this.delegate = delegate;
     }
 

@@ -18,7 +18,7 @@ package io.gravitee.gateway.el;
 import org.springframework.expression.ParserContext;
 
 /**
- * @deprecated replaced by io.gravitee.el.TemplateParserContext
+ * @deprecated replaced by io.gravitee.el.TemplateContext
  *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
@@ -26,7 +26,7 @@ import org.springframework.expression.ParserContext;
 @Deprecated
 public class TemplateParserContext implements ParserContext {
 
-    private io.gravitee.el.TemplateParserContext delegate = new io.gravitee.el.TemplateParserContext();
+    private final io.gravitee.el.spel.TemplateParserContext delegate = new io.gravitee.el.spel.TemplateParserContext();
 
     @Override
     public String getExpressionPrefix() {
